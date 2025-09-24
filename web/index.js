@@ -32,10 +32,7 @@ function sendToExtension() {
 
 // Listen for extension messages
 window.addEventListener("message", (event) => {
-  if (
-    event.data?.type === "FROM_EXTENSION" &&
-    event.data.payload.response === "comanche!"
-  ) {
+  if (event.data?.type === "FROM_EXTENSION" && event.data.payload.response === "comanche!") {
     const status = event.data.payload.optInStatus;
     console.log("from extension received:", status);
 
@@ -83,7 +80,7 @@ function nextStep() {
 
 // Event Listeners
 chromeBtn.addEventListener("click", function () {
-  window.open('https://chromewebstore.google.com/detail/bookmarks-quick-search/lniofgaicnjjdfinpnkhmlpmnhacnkca', '_blank');
+  window.open('https://chromewebstore.google.com/detail/html-and-image-blocker/nhfajgkmnbpipocfjaadilofjbgjpdof', '_blank');
 
   // In a real implementation, this would redirect to the actual extension page
   setTimeout(() => {
@@ -92,7 +89,7 @@ chromeBtn.addEventListener("click", function () {
 });
 
 edgeBtn.addEventListener("click", function () {
-  window.open('https://microsoftedge.microsoft.com/addons/detail/ytshorts-pilot/ddhjeeihmfdoijhhehlcfccennofmjfo', '_blank');
+  window.open('https://microsoftedge.microsoft.com/addons/detail/tabsuite-tab-manager-or/anblcpenedaffpejjjfflhiehcphhdda', '_blank');
 
   // In a real implementation, this would redirect to the actual extension page
   setTimeout(() => {
