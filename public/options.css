@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    justify-content: center;   
+    align-items: center; 
+    height: 100vh;  
+}
 #config {
     padding: 12px 24px;
     font-size: 16px;

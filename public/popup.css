@@ -11,6 +11,7 @@ body {
     height: 100vh;
     background: linear-gradient(45deg, #14222e, #2c3c5a);
     color: #eaeaea;
+
 }
 
 *.hide { display: none !important; }

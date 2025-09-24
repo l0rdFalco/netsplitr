@@ -1,7 +1,7 @@
 {
   "name": "netsplitr",
-  "version": "1.0.0",
-  "description": "check your connection speed and share some of it",
+  "version": "1.0.0.0",
+  "description": "check your internet status and share some of it",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/l0rdFalco"
+    "url": "git+https://github.com/l0rdFalco/netsplitr.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/l0rdFalco"
+    "url": "https://github.com/l0rdFalco/netsplitr#issues"
   },
   "homepage": "https://github.com/l0rdFalco/",
   "devDependencies": {

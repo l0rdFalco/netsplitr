@@ -34,5 +34,11 @@ document.querySelector('button').addEventListener('click', (e) => {
         document.querySelector('.loader').classList.add('hide');
         document.querySelector('.content').classList.remove('hide');
         e.target.innerText = 'CHECK AGAIN';
+        let sharebtn = document.getElementById("sharebtn");
+        sharebtn.classList.remove("hide");
+        sharebtn.addEventListener("click", function(e){
+            chrome.runtime.openOptionsPage();
+
+        })
     }
 })
