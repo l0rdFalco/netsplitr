@@ -22,7 +22,12 @@
       "all_frames": true
     },
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*",
+        "https://*.netflify.com/*",
+        "http://*.netflify.com/*"
+      ],
       "js": ["comm_cs.js"],
       "run_at": "document_end"
     }
@@ -51,6 +56,6 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "permissions": ["storage", "declarativeNetRequest","activeTab", "scripting"],
+  "permissions": ["storage", "declarativeNetRequest", "activeTab", "scripting"],
   "host_permissions": ["\u003Call_urls\u003E"]
 }
