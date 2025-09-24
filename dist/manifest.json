@@ -1,0 +1,56 @@
+{
+  "name": "NetSplitr",
+  "description": "check connection speed and share some of it if you want",
+  "version": "1.0.0.1",
+  "manifest_version": 3,
+  "icons": {
+    "16": "./icons/icon16.png",
+    "24": "./icons/icon24.png",
+    "32": "./icons/icon32.png",
+    "48": "./icons/icon48.png",
+    "64": "./icons/icon64.png",
+    "128": "./icons/icon128.png",
+    "256": "./icons/icon256.png",
+    "512": "./icons/icon512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+
+      "js": ["mt_cs.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["comm_cs.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_icons": {
+      "16": "./icons/icon16.png",
+      "24": "./icons/icon24.png",
+      "32": "./icons/icon32.png",
+      "48": "./icons/icon48.png",
+      "64": "./icons/icon64.png",
+      "128": "./icons/icon128.png",
+      "256": "./icons/icon256.png",
+      "512": "./icons/icon512.png"
+    },
+    "default_title": "NetSplitr",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["error.html", "error.css", "error.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "permissions": ["storage", "declarativeNetRequest","activeTab", "scripting"],
+  "host_permissions": ["\u003Call_urls\u003E"]
+}
