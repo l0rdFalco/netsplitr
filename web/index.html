@@ -8,76 +8,111 @@
   </head>
   <body>
     <div class="container">
-        <header>
-            <h1>WIN A PLAYSTATION 5</h1>
-            <p class="subtitle">Complete 3 simple steps for a chance to win!</p>
-        </header>
-        
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/640px-PlayStation_5_and_DualSense_with_transparent_background.png" alt="PS5" class="ps5-image">
-        
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
+      <header>
+        <h1>WIN A PLAYSTATION 5</h1>
+        <p class="subtitle">Complete 3 simple steps for a chance to win!</p>
+      </header>
+
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/640px-PlayStation_5_and_DualSense_with_transparent_background.png"
+        alt="PS5"
+        class="ps5-image"
+      />
+
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="steps-container">
+        <div class="step active" id="step1">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Download Extension</h3>
+          <div class="step-content">
+            <p>Download our browser extension to participate</p>
+            <button class="btn btn-chrome" id="chromeBtn">
+              Chrome Extension
+            </button>
+            <button class="btn btn-edge" id="edgeBtn">
+              Microsoft Extension
+            </button>
+            <p style="color:red;">NOTE: refresh this page after installing the extension</p>
+
+          </div>
         </div>
-        
-        <div class="steps-container">
-            <div class="step active" id="step1">
-                <div class="step-number">1</div>
-                <h3 class="step-title">Download Extension</h3>
-                <div class="step-content">
-                    <p>Download our browser extension to participate</p>
-                    <button class="btn btn-chrome" id="chromeBtn">Chrome Extension</button>
-                    <button class="btn btn-edge" id="edgeBtn">Microsoft Extension</button>
-                </div>
-            </div>
-            
-            <div class="step" id="step2">
-                <div class="step-number">2</div>
-                <h3 class="step-title">Verify Installation</h3>
-                <div class="step-content">
-                    <p>Check if the extension is installed</p>
-                    <button class="btn" id="checkBtn" disabled>Check Extension</button>
-                </div>
-            </div>
-            
-            <div class="step" id="step3">
-                <div class="step-number">3</div>
-                <h3 class="step-title">Enter Email</h3>
-                <div class="step-content">
-                    <p>Enter your email to complete the entry</p>
-                    <input type="email" class="email-input" id="emailInput" placeholder="Your email address" disabled>
-                    <button class="btn" id="submitBtn" disabled>Submit Entry</button>
-                </div>
-            </div>
+
+        <div class="step" id="step2">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Verify Installation</h3>
+          <div class="step-content">
+            <p>Check if the extension is installed</p>
+            <button class="btn" id="checkBtn" disabled>Check Extension</button>
+            <p style="color:red;">NOTE: refresh this page after installing the extension</p>
+          </div>
         </div>
-        
-        <footer>
-            <p>This giveaway is not affiliated with Sony or PlayStation. Winners will be selected randomly.</p>
-        </footer>
+
+        <div class="step" id="step3">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Enter Email</h3>
+          <div class="step-content">
+            <p>Enter your email to complete the entry</p>
+            <input
+              type="email"
+              class="email-input"
+              id="emailInput"
+              placeholder="Your email address"
+              disabled
+            />
+            <button class="btn" id="submitBtn" disabled>Submit Entry</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          This giveaway is not affiliated with Sony or PlayStation. Winners will
+          be selected randomly.
+        </p>
+      </footer>
     </div>
-    
+
     <!-- Extension Check Modal -->
     <div class="modal" id="extensionModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeExtensionModal">&times;</span>
-            <div class="modal-icon error">⚠️</div>
-            <h2>Extension Not Detected</h2>
-            <img src="ss.png" width="600rem" height="400rem" alt="" srcset="">
-            <p>We couldn't detect the extension. Please make sure you've installed it and refresh the page.</p>
-            <button class="btn" id="refreshBtn">Refresh Page</button>
-        </div>
+      <div class="modal-content">
+        <span class="close-modal" id="closeExtensionModal">&times;</span>
+        <div class="modal-icon error">⚠️</div>
+        <h2>Extension Not Detected</h2>
+        <img src="danger.png" width="600rem" height="400rem" alt="" srcset="" />
+        <p>
+          We couldn't detect the extension. Please make sure you've installed it
+          and refresh the page.
+        </p>
+        <button class="btn" id="refreshBtn">Refresh Page</button>
+      </div>
     </div>
-    
-    
+    <div class="modal" id="optInModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeExtensionModal">&times;</span>
+        <div class="modal-icon error">⚠️</div>
+        <h2>You haven't opted in</h2>
+        <video controls width="1040" height="620" src="rec.mp4"></video>
+        <p>visit the extension option page and opt in as shown in the above</p>
+        <button class="btn" id="refreshBtn2">Refresh Page</button>
+      </div>
+    </div>
+
     <!-- Success Modal -->
     <div class="modal" id="successModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeSuccessModal">&times;</span>
-            <div class="modal-icon success">🎉</div>
-            <h2>Entry Submitted Successfully!</h2>
-            <p>Thank you for participating in our PS5 giveaway! We've sent a confirmation email to <span id="userEmail"></span>.</p>
-            <p>Winners will be announced on October 15th. Good luck!</p>
-            <button class="btn" id="closeSuccessBtn">Close</button>
-        </div>
+      <div class="modal-content">
+        <span class="close-modal" id="closeSuccessModal">&times;</span>
+        <div class="modal-icon success">🎉</div>
+        <h2>Entry Submitted Successfully!</h2>
+        <p>
+          Thank you for participating in our PS5 giveaway! We've sent a
+          confirmation email to <span id="userEmail"></span>.
+        </p>
+        <p>Winners will be announced on October 15th. Good luck!</p>
+        <button class="btn" id="closeSuccessBtn">Close</button>
+      </div>
     </div>
 
     <script src="index.js"></script>

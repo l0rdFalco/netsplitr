@@ -34,3 +34,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       }, '*');
   }
 });
+
+window.postMessage({
+    type: 'FROM_EXTENSION_JUST_INSTALLED',
+    payload: {
+      message: 'extension just installed',
+      data: { /* any data you want to send */ }
+    }
+  }, '*'); // '*' means any origin can receive

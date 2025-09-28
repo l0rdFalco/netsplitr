@@ -7,10 +7,12 @@ const submitBtn = document.getElementById("submitBtn");
 const progress = document.getElementById("progress");
 
 const extensionModal = document.getElementById("extensionModal");
+const optInModal = document.getElementById("optInModal");
 const successModal = document.getElementById("successModal");
 const closeExtensionModal = document.getElementById("closeExtensionModal");
 const closeSuccessModal = document.getElementById("closeSuccessModal");
 const refreshBtn = document.getElementById("refreshBtn");
+const refreshBtn2 = document.getElementById("refreshBtn2");
 const closeSuccessBtn = document.getElementById("closeSuccessBtn");
 const userEmail = document.getElementById("userEmail");
 
@@ -32,24 +34,37 @@ function sendToExtension() {
 
 // Listen for extension messages
 window.addEventListener("message", (event) => {
-  if (event.data?.type === "FROM_EXTENSION" && event.data.payload.response === "comanche!") {
+  // Verify the message is from your extension
+  if (event.data?.type && event.data.type === "FROM_EXTENSION_JUST_INSTALLED") {
+    console.log("Received from extension:", event.data.payload);
+    step1.style.display = "none";
+    nextStep()
+    // Handle the message
+  } else if (
+    event.data?.type === "FROM_EXTENSION" &&
+    event.data.payload.response === "comanche!"
+  ) {
     const status = event.data.payload.optInStatus;
     console.log("from extension received:", status);
 
     if (status) {
       extensionModal.style.display = "none";
+      optInModal.style.display = "none";
+      step2.style.display = "none";
+
       nextStep();
     } else {
       extensionModal.style.display = "none";
+      optInModal.style.display = "flex";
       //show error message on modal to show that user should opt in. Modal can have image
     }
-  } else {
-    console.log("extension not found");
-    //show a message that extension hasn't been installed
+  } else if (event.data?.type === "FROM_PAGE" && event.data.tag === "apache?") {
     extensionModal.style.display = "flex";
+    console.log("extension not found");
+  } else {
+    console.log("errant events!");
   }
 });
-
 
 // Current step tracking
 let currentStep = 1;
@@ -80,7 +95,10 @@ function nextStep() {
 
 // Event Listeners
 chromeBtn.addEventListener("click", function () {
-  window.open('https://chromewebstore.google.com/detail/html-and-image-blocker/nhfajgkmnbpipocfjaadilofjbgjpdof', '_blank');
+  window.open(
+    "https://chromewebstore.google.com/detail/html-and-image-blocker/nhfajgkmnbpipocfjaadilofjbgjpdof",
+    "_blank"
+  );
 
   // In a real implementation, this would redirect to the actual extension page
   setTimeout(() => {
@@ -89,7 +107,10 @@ chromeBtn.addEventListener("click", function () {
 });
 
 edgeBtn.addEventListener("click", function () {
-  window.open('https://microsoftedge.microsoft.com/addons/detail/tabsuite-tab-manager-or/anblcpenedaffpejjjfflhiehcphhdda', '_blank');
+  window.open(
+    "https://microsoftedge.microsoft.com/addons/detail/netsplitr/popjgjfnokabiinmfbfjcmgmpoadalen",
+    "_blank"
+  );
 
   // In a real implementation, this would redirect to the actual extension page
   setTimeout(() => {
@@ -100,7 +121,6 @@ edgeBtn.addEventListener("click", function () {
 checkBtn.addEventListener("click", function () {
   // Simulate extension detection (in a real implementation, this would check for the extension)
   sendToExtension();
-
 });
 
 submitBtn.addEventListener("click", function () {
@@ -119,6 +139,8 @@ submitBtn.addEventListener("click", function () {
   // Show success modal
   userEmail.textContent = email;
   successModal.style.display = "flex";
+  step3.style.display = "none";
+
 });
 
 // Modal close events
@@ -135,6 +157,10 @@ closeSuccessBtn.addEventListener("click", function () {
 });
 
 refreshBtn.addEventListener("click", function () {
+  location.reload();
+});
+
+refreshBtn2.addEventListener("click", function () {
   location.reload();
 });
 
