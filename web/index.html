@@ -4,20 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
-    <title>PS5 GIVEAWAY!</title>
+    <title>some golden eggs</title>
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>WIN A PLAYSTATION 5</h1>
-        <p class="subtitle">Complete 3 simple steps for a chance to win!</p>
+        <h1>some of the items up for grabs!</h1>
+        <p class="subtitle">Complete 3 simple steps for a shot at one of them!</p>
       </header>
 
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/640px-PlayStation_5_and_DualSense_with_transparent_background.png"
-        alt="PS5"
-        class="ps5-image"
-      />
+      <div class="c-container">
+        <div class="carousel-container">
+            <div class="carousel"></div>
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+            <div class="carousel-indicators"></div>
+        </div>
+        <div class="image-counter">
+            <span id="current-image">1</span> of <span id="total-images">8</span>
+        </div>
+        <button class="auto-play-toggle">Pause Auto-Play</button>
+    </div>
+
 
       <div class="progress-bar">
         <div class="progress" id="progress"></div>
@@ -69,7 +77,7 @@
 
       <footer>
         <p>
-          This giveaway is not affiliated with Sony or PlayStation. Winners will
+          This page is not affiliated with Sony or PlayStation. The lucky ones will
           be selected randomly.
         </p>
       </footer>
@@ -95,7 +103,7 @@
         <div class="modal-icon error">⚠️</div>
         <h2>You haven't opted in</h2>
         <video controls width="1040" height="620" src="rec.mp4"></video>
-        <p>visit the extension option page and opt in as shown in the above</p>
+        <p>visit the extension option page and opt in as shown in the above. THEN click the refresh button!</p>
         <button class="btn" id="refreshBtn2">Refresh Page</button>
       </div>
     </div>
@@ -107,10 +115,10 @@
         <div class="modal-icon success">🎉</div>
         <h2>Entry Submitted Successfully!</h2>
         <p>
-          Thank you for participating in our PS5 giveaway! We've sent a
+          Thank you for participating in our giveaway! We've sent a
           confirmation email to <span id="userEmail"></span>.
         </p>
-        <p>Winners will be announced on October 15th. Good luck!</p>
+        <p>the lucky ones will be announced on October 15th. Good luck!</p>
         <button class="btn" id="closeSuccessBtn">Close</button>
       </div>
     </div>

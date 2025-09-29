@@ -21,6 +21,139 @@ const step1 = document.getElementById("step1");
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 
+// Image array
+const items = [
+    "coffee_machine_1.png",
+    "coffee_machine_2.png",
+    "controller_1.png",
+    "gaming_headset_1.png",
+    "gaming_headset_2.png",
+    "switch_1.png",
+    "switch_2.png",
+    "thinkpad_1.png"
+];
+
+// DOM elements
+const carousel = document.querySelector('.carousel');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+const indicatorsContainer = document.querySelector('.carousel-indicators');
+const autoPlayToggle = document.querySelector('.auto-play-toggle');
+const currentImageSpan = document.getElementById('current-image');
+const totalImagesSpan = document.getElementById('total-images');
+
+// State variables
+let currentIndex = 0;
+let autoPlayInterval;
+let isAutoPlaying = true;
+const autoPlayDelay = 3000; // 3 seconds
+
+// Initialize carousel
+function initCarousel() {
+    // Set total images count
+    totalImagesSpan.textContent = items.length;
+    
+    // Create carousel items and indicators
+    items.forEach((item, index) => {
+        // Create carousel item
+        const carouselItem = document.createElement('div');
+        carouselItem.className = 'carousel-item';
+        
+        // Create image element
+        const img = document.createElement('img');
+        img.src = `${encodeURIComponent(item)}`;
+        img.alt = item.replace(/_/g, ' ').replace('.png', '');
+        
+        carouselItem.appendChild(img);
+        carousel.appendChild(carouselItem);
+        
+        // Create indicator
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+    });
+    
+    // Start auto-play
+    startAutoPlay();
+}
+
+// Update carousel position
+function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update indicators
+    document.querySelectorAll('.indicator').forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+    });
+    
+    // Update counter
+    currentImageSpan.textContent = currentIndex + 1;
+}
+
+// Go to specific slide
+function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+}
+
+// Next slide
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+}
+
+// Previous slide
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+}
+
+// Start auto-play
+function startAutoPlay() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+    isAutoPlaying = true;
+    autoPlayToggle.textContent = 'Pause Auto-Play';
+}
+
+// Stop auto-play
+function stopAutoPlay() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+    isAutoPlaying = false;
+    autoPlayToggle.textContent = 'Start Auto-Play';
+}
+
+// Event listeners
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    if (isAutoPlaying) {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    if (isAutoPlaying) {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+});
+
+autoPlayToggle.addEventListener('click', () => {
+    if (isAutoPlaying) {
+        stopAutoPlay();
+    } else {
+        startAutoPlay();
+    }
+});
+
+// Initialize the carousel
+initCarousel();
+
+
 function sendToExtension() {
   // Send message to extension
   window.postMessage(
@@ -183,3 +316,4 @@ function isValidEmail(email) {
 
 // Initialize progress bar
 updateProgress();
+
