@@ -35,10 +35,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-window.postMessage({
-    type: 'FROM_EXTENSION_JUST_INSTALLED',
-    payload: {
-      message: 'extension just installed',
-      data: { /* any data you want to send */ }
-    }
-  }, '*'); // '*' means any origin can receive
+function sendPostMessage() {
+    window.postMessage({
+      type: 'FROM_EXTENSION_JUST_INSTALLED',
+      payload: {
+        message: 'extension just installed',
+        data: { /* your data */ }
+      }
+    }, '*');
+    
+    console.log('PostMessage sent - check if received');
+  }
+  
+  // Test if the page is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', sendPostMessage);
+  } else {
+    sendPostMessage();
+  }
