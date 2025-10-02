@@ -1,7 +1,7 @@
 {
   "name": "NetSplitr: idle bandwidth sharer",
-  "description": "test connection speed, manage and optionally share some of it with mellowtel",
-  "version": "1.0.0.4",
+  "description": "optionally share some of bandwidth with mellowtel if the speed is high enough",
+  "version": "1.0.0.5",
   "manifest_version": 3,
   "icons": {
     "16": "icons/icon16.png",

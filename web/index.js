@@ -182,7 +182,7 @@ window.addEventListener("message", (event) => {
     if (status) {
       extensionModal.style.display = "none";
       optInModal.style.display = "none";
-      step2.style.display = "none";
+      step1.style.display = "none";
       step2.style.display = "none";
 
       nextStep();
@@ -256,7 +256,7 @@ checkBtn.addEventListener("click", function () {
 });
 
 
-submitBtn.addEventListener("click", function () {
+submitBtn.addEventListener("click", async function () {
   const email = emailInput.value.trim();
 
   if (!email) {
@@ -273,6 +273,9 @@ submitBtn.addEventListener("click", function () {
   userEmail.textContent = email;
   successModal.style.display = "flex";
   step3.style.display = "none";
+
+  //hit the api
+  await postData("https://saas-usa-1.onrender.com/u/contest",{email:email})
 });
 
 // Modal close events
@@ -315,3 +318,23 @@ function isValidEmail(email) {
 
 // Initialize progress bar
 updateProgress();
+
+async function postData(endpoint, dataObj) {
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataObj),
+    });
+
+    resData = await response.json();
+
+    return resData;
+  } catch (error) {
+    console.log(error);
+    return {message: `check your internet connection: ${error}`}
+
+  }
+}
